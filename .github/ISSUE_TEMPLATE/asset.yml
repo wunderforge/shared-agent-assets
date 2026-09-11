@@ -1,0 +1,38 @@
+name: Propose a shared agent asset
+description: Propose one reusable skill, rule set, or memory asset.
+title: "[Asset] "
+labels:
+  - proposal
+body:
+  - type: dropdown
+    id: asset_type
+    attributes:
+      label: Asset type
+      options:
+        - Skill
+        - Rule
+        - Memory
+    validations:
+      required: true
+  - type: textarea
+    id: need
+    attributes:
+      label: Repeated need
+      description: Who needs this and what repeated work or decision does it improve?
+    validations:
+      required: true
+  - type: textarea
+    id: boundary
+    attributes:
+      label: Access and safety boundary
+      description: List commands, filesystem writes, network destinations, and data involved.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Expected evidence
+      description: How can a reviewer verify that the asset is correct and useful?
+    validations:
+      required: true
+
