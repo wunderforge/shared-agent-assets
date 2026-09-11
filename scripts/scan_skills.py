@@ -46,12 +46,19 @@ def main() -> int:
         try:
             payload = json.loads(report.read_text(encoding="utf-8"))
             recommendation = payload["risk_assessment"]["recommendation"]
+            execution_successful = payload["execution_successful"]
+            analysis_complete = payload["analysis_completeness"]["is_complete"]
         except (OSError, UnicodeError, json.JSONDecodeError, KeyError, TypeError) as exc:
             failures.append(f"{skill_dir.name}: invalid scanner report ({exc})")
             continue
-        print(f"{skill_dir.name}: {recommendation}")
+        print(
+            f"{skill_dir.name}: {recommendation}; "
+            f"execution_successful={execution_successful}; complete={analysis_complete}"
+        )
         if recommendation != "SAFE":
             failures.append(f"{skill_dir.name}: recommendation is {recommendation}")
+        if not execution_successful or not analysis_complete:
+            failures.append(f"{skill_dir.name}: scan did not complete successfully")
 
     if failures:
         print("Skill security gate failed:", file=sys.stderr)
@@ -64,4 +71,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-
