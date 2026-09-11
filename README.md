@@ -25,6 +25,15 @@ Install one skill for a supported agent:
 npx skills add wunderforge/shared-agent-assets --skill <skill-name> --agent codex
 ```
 
+For example, install the guided Agenova delivery workflow:
+
+```sh
+npx skills add wunderforge/shared-agent-assets --skill agenova-feature-delivery --agent codex
+```
+
+Use `--agent claude-code` to install the same vendor-neutral workflow for
+Claude Code.
+
 The same repository can target Claude Code, Cursor, and other clients supported
 by the [`skills` CLI](https://github.com/vercel-labs/skills).
 
@@ -40,4 +49,3 @@ Every skill is scanned with
 fail-closed: only a `SAFE` recommendation is accepted.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the asset contracts and review flow.
-
